@@ -4,14 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huntoria — Digital Services & Product Hub</title>
-<meta name="description" content="AI-powered virtual assistant, content creation, and curated product recommendations. Hire on Upwork or explore trusted tools.">
+<meta name="description" content="AI-powered virtual assistant, content creation, and curated ADHD product recommendations. Hire on Upwork or explore trusted tools for productivity.">
+<meta name="keywords" content="virtual assistant, ADHD tools, productivity, freelance, Upwork, digital products, planners, timers">
+<meta name="author" content="Soufian Hamami">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lbahja9-netizen.github.io/huntoria-site/">
+<meta property="og:title" content="Huntoria — Digital Services & Product Hub">
+<meta property="og:description" content="AI-powered virtual assistant, content creation, and curated ADHD product recommendations. Hire on Upwork or explore trusted tools.">
+<meta property="og:image" content="https://lbahja9-netizen.github.io/huntoria-site/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://lbahja9-netizen.github.io/huntoria-site/">
+<meta name="twitter:title" content="Huntoria — Digital Services & Product Hub">
+<meta name="twitter:description" content="AI-powered virtual assistant, content creation, and curated ADHD product recommendations.">
+<meta name="twitter:image" content="https://lbahja9-netizen.github.io/huntoria-site/og-image.png">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://lbahja9-netizen.github.io/huntoria-site/">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- Lenis Smooth Scroll -->
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+<!-- GSAP 3.12.7 (latest) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollToPlugin.min.js"></script>
+
+<!-- Three.js r170 (latest) -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.min.js"></script>
+
+<!-- Lenis -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -179,6 +209,29 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
 /* MAGNETIC BTN */
 .magnetic{position:relative;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:200;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* MOBILE MENU */
+.mobile-menu{position:fixed;inset:0;background:rgba(6,6,14,0.97);backdrop-filter:blur(24px);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-size:1.3rem;font-weight:600;color:var(--dim);transition:color .3s;position:relative}
+.mobile-menu a:hover{color:var(--text)}
+.mobile-menu a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.mobile-menu a:hover::after{width:100%}
+.mobile-menu .mobile-cta{padding:14px 32px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important;margin-top:12px}
+.mobile-menu .mobile-cta::after{display:none!important}
+
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
@@ -189,12 +242,14 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
 @media(max-width:640px){
   nav{padding:14px 20px}
   .nav-links{display:none}
+  .hamburger{display:flex}
   .hero{padding:120px 20px 60px}
   .services-grid{grid-template-columns:1fr}
   .stats{flex-direction:column;gap:28px}
   .prod-grid{grid-template-columns:1fr}
   .hero-btns{flex-direction:column;align-items:center}
   .container{padding:0 20px}
+  .contact-box{padding:40px 24px}
 }
 </style>
 </head>
@@ -212,7 +267,19 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
     <a href="#contact">Contact</a>
     <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="nav-cta">Hire on Upwork</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#hire">Hire Me</a>
+  <a href="#tools">Tools</a>
+  <a href="#contact">Contact</a>
+  <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="mobile-cta">Hire on Upwork</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -434,6 +501,25 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
 </footer>
 
 <script>
+// ============ LENIS SMOOTH SCROLL ============
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  touchMultiplier: 2,
+  smoothWheel: true,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// Sync Lenis with GSAP ScrollTrigger
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
 // ============ DATA ============
 const products = [
   {cat:'timers',name:'Time Timer MOD 60-min',rating:'4.5',url:'https://www.amazon.ae/dp/B0BK2J71M1?tag=lbahja27-21',desc:'The ADHD classic'},
@@ -458,12 +544,36 @@ const products = [
   {cat:'big',name:'Adjustable Dumbbells',rating:'4.6',url:'https://www.amazon.ae/dp/B0DGXWW1S9?tag=lbahja27-21',desc:'22KG set'},
 ];
 
+// ============ CLICK TRACKING ============
+const clickLog = JSON.parse(localStorage.getItem('huntoria_clicks') || '[]');
+function trackClick(type, url, label) {
+  clickLog.push({ type, url, label, ts: Date.now() });
+  localStorage.setItem('huntoria_clicks', JSON.stringify(clickLog));
+  console.log(`[Track] ${type}: ${label} → ${url}`);
+}
+
+// Intercept all affiliate link clicks
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  const href = link.href;
+  if (href.includes('amazon.ae')) {
+    trackClick('affiliate', href, link.querySelector('h4')?.textContent || link.textContent.trim().slice(0, 40));
+  } else if (href.includes('upwork.com')) {
+    trackClick('upwork', href, 'Upwork Profile');
+  } else if (href.includes('ko-fi.com')) {
+    trackClick('kofi', href, 'Ko-fi Shop');
+  } else if (href.includes('pinterest.com')) {
+    trackClick('pinterest', href, 'Pinterest');
+  }
+});
+
 // ============ RENDER PRODUCTS ============
 const grid = document.getElementById('prodGrid');
 function renderProducts(cat){
   const items = cat==='all'? products : products.filter(p=>p.cat===cat);
   grid.innerHTML = items.map(p=>`
-    <a href="${p.url}" target="_blank" class="prod-card" data-cat="${p.cat}">
+    <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="prod-card" data-cat="${p.cat}">
       <div class="prod-cat">${p.cat}</div>
       <h4>${p.name}</h4>
       <div class="rating"><strong>${p.rating}</strong> stars</div>
@@ -473,7 +583,6 @@ function renderProducts(cat){
       </span>
     </a>
   `).join('');
-  // animate new cards
   gsap.fromTo('.prod-card',{opacity:0,y:40},{opacity:1,y:0,duration:.6,stagger:.05,ease:'power3.out'});
 }
 renderProducts('all');
@@ -487,7 +596,7 @@ document.querySelectorAll('.prod-tab').forEach(tab=>{
   });
 });
 
-// ============ THREE.JS PARTICLES ============
+// ============ THREE.JS PARTICLES (r170) ============
 const canvas = document.getElementById('bg');
 const scene = new THREE.Scene();
 const cam = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
@@ -528,57 +637,50 @@ document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.4;my=(e.
 
 addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight)});
 
-// ============ GSAP ============
+// ============ GSAP ANIMATIONS ============
 gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
 
-// nav
 gsap.to('nav',{opacity:1,y:0,duration:1,delay:.3,ease:'power3.out'});
-
-// hero
 gsap.to('.hero-badge',{opacity:1,y:0,duration:1,delay:.6,ease:'power3.out'});
 gsap.to('.hero h1',{opacity:1,y:0,duration:1.2,delay:.8,ease:'power3.out'});
 gsap.to('.hero-sub',{opacity:1,y:0,duration:1,delay:1.1,ease:'power3.out'});
 gsap.to('.hero-btns',{opacity:1,y:0,duration:1,delay:1.3,ease:'power3.out'});
-
-// split text animation
 gsap.fromTo('.hero h1 .line span',{y:'110%',skewY:4},{y:'0%',skewY:0,duration:1,delay:.9,ease:'power3.out',stagger:.12});
 
-// stats
 gsap.to('.stats',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.stats',start:'top 85%'}});
 document.querySelectorAll('.stat-num').forEach(el=>{
   const t=+el.dataset.count;
   ScrollTrigger.create({trigger:el,start:'top 90%',onEnter:()=>{gsap.to(el,{innerText:t,duration:2,snap:{innerText:1},ease:'power2.out'})},once:true});
 });
 
-// service cards
 gsap.utils.toArray('.svc-card').forEach((c,i)=>{
   gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.08,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
 });
 
-// hire
 gsap.to('.hire-info',{opacity:1,x:0,duration:1,scrollTrigger:{trigger:'.hire-box',start:'top 80%'}});
 gsap.to('.hire-visual',{opacity:1,x:0,duration:1,delay:.2,scrollTrigger:{trigger:'.hire-box',start:'top 80%'}});
 
-// product cards
 ScrollTrigger.create({trigger:'.prod-grid',start:'top 85%',onEnter:()=>{gsap.to('.prod-card',{opacity:1,y:0,duration:.5,stagger:.04,ease:'power3.out'})},once:true});
 
-// printables
 gsap.utils.toArray('.print-card').forEach((c,i)=>{
   gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
 });
 
-// contact
 gsap.to('.contact-box',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.contact-box',start:'top 85%'}});
 
 // scroll bar
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY,m=document.documentElement.scrollHeight-innerHeight;
+lenis.on('scroll',()=>{
+  const s=lenis.scroll,m=document.documentElement.scrollHeight-innerHeight;
   document.getElementById('scrollBar').style.width=(s/m*100)+'%';
 });
 
-// smooth scroll
+// smooth scroll (Lenis-powered)
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();gsap.to(window,{scrollTo:a.getAttribute('scrollTo')||a.getAttribute('href'),duration:.8,ease:'power3.inOut'})});
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) lenis.scrollTo(target,{offset:-80,duration:1.5});
+  });
 });
 
 // magnetic buttons
@@ -590,6 +692,37 @@ document.querySelectorAll('.magnetic').forEach(btn=>{
     gsap.to(btn,{x:x*.2,y:y*.2,duration:.3,ease:'power2.out'});
   });
   btn.addEventListener('mouseleave',()=>{gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,.4)'})});
+});
+
+// ============ HAMBURGER MENU ============
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  if (mobileMenu.classList.contains('open')) {
+    lenis.stop();
+  } else {
+    lenis.start();
+  }
+});
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    lenis.start();
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    lenis.start();
+  }
 });
 </script>
 </body>
