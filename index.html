@@ -42,6 +42,9 @@
 
 <!-- Lenis -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+<!-- Ko-fi Floating Widget -->
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -179,12 +182,29 @@ section{position:relative;z-index:2}
 .prod-btn svg{width:14px;height:14px}
 
 /* PRINTABLES */
-.printables{padding:80px 0}
+.printables{padding:100px 0}
 .print-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
 .print-card{padding:36px;border-radius:18px;background:var(--surface);border:1px solid var(--border);transition:all .4s;opacity:0;transform:translateY(40px)}
 .print-card:hover{transform:translateY(-4px);border-color:rgba(124,106,255,0.3)}
 .print-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
 .print-card p{color:var(--dim);font-size:.9rem;margin-bottom:20px;line-height:1.6}
+
+/* KO-FI SHOP EMBED */
+.kofi-embed-section{padding:80px 0}
+.kofi-embed-box{max-width:900px;margin:40px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--surface)}
+.kofi-embed-box iframe{width:100%;min-height:600px;border:none;display:block;background:transparent}
+
+/* KO-FI SUPPORT PANEL */
+.kofi-support{padding:80px 0}
+.kofi-support-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.kofi-support-card{padding:36px;border-radius:18px;background:var(--surface);border:1px solid var(--border);text-align:center;transition:all .4s;opacity:0;transform:translateY(40px)}
+.kofi-support-card:hover{transform:translateY(-4px);border-color:rgba(124,106,255,0.3)}
+.kofi-support-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.kofi-support-card p{color:var(--dim);font-size:.9rem;margin-bottom:20px;line-height:1.6}
+.kofi-support-card .kofi-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff5e5b,#ff8a80);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px}
+.kofi-support-card .kofi-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;background:#ff5e5b;color:#fff;font-weight:700;font-size:.95rem;transition:all .3s;text-decoration:none}
+.kofi-support-card .kofi-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,94,91,0.3)}
+.kofi-support-card .kofi-btn svg{width:18px;height:18px}
 
 /* CONTACT */
 .contact{padding:100px 0}
@@ -237,6 +257,7 @@ html.lenis,html.lenis body{height:auto}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .hire-box{grid-template-columns:1fr}
   .print-cards{grid-template-columns:1fr}
+  .kofi-support-grid{grid-template-columns:1fr}
   .stats{gap:40px}
 }
 @media(max-width:640px){
@@ -264,6 +285,7 @@ html.lenis,html.lenis body{height:auto}
     <a href="#services">Services</a>
     <a href="#hire">Hire Me</a>
     <a href="#tools">Tools</a>
+    <a href="#printables">Shop</a>
     <a href="#contact">Contact</a>
     <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="nav-cta">Hire on Upwork</a>
   </div>
@@ -277,6 +299,7 @@ html.lenis,html.lenis body{height:auto}
   <a href="#services">Services</a>
   <a href="#hire">Hire Me</a>
   <a href="#tools">Tools</a>
+  <a href="#printables">Shop</a>
   <a href="#contact">Contact</a>
   <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="mobile-cta">Hire on Upwork</a>
 </div>
@@ -445,29 +468,72 @@ html.lenis,html.lenis body{height:auto}
   </div>
 </section>
 
-<!-- PRINTABLES -->
+<!-- DIGITAL PRODUCTS (Ko-fi Shop) -->
 <section class="printables" id="printables">
   <div class="container">
     <div class="sec-label">Digital Products</div>
-    <div class="sec-title">Printables & resources</div>
-    <p class="sec-desc">ADHD planners, trackers, and wall art. Download instantly, print at home.</p>
+    <div class="sec-title">ADHD planners & printables</div>
+    <p class="sec-desc">Done-for-you tools for neurodivergent brains. Planners that plan themselves, trackers that forgive you when you miss a day. Print at home, start immediately.</p>
     <div class="print-cards">
-      <a href="https://ko-fi.com/lbahja" target="_blank" class="print-card">
-        <h3>Ko-fi Shop</h3>
-        <p>19 ADHD printables including daily planners, habit trackers, decision trees, and wall art. Instant download.</p>
+      <a href="https://ko-fi.com/lbahja/shop" target="_blank" class="print-card">
+        <div class="kofi-icon" style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#ff5e5b,#ff8a80);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px">🛒</div>
+        <h3>Browse Full Shop</h3>
+        <p>19 ADHD printables including daily planners, habit trackers, decision trees, wellness journals, and wall art. Instant download, print at home.</p>
         <span class="btn btn-ghost" style="width:fit-content">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
-          Browse Shop
+          Shop on Ko-fi
         </span>
       </a>
       <a href="https://www.pinterest.com/lbahja9/" target="_blank" class="print-card">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(230,0,35,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px">📌</div>
         <h3>Pinterest Boards</h3>
-        <p>Daily finds, ADHD tips, productivity ideas, and product recommendations. Follow for inspiration.</p>
+        <p>Daily finds, ADHD tips, productivity ideas, and product recommendations. 30 pins and growing. Follow for daily inspiration.</p>
         <span class="btn btn-ghost" style="width:fit-content">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Follow on Pinterest
         </span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- KO-FI SHOP EMBED -->
+<section class="kofi-embed-section" id="kofi-shop">
+  <div class="container">
+    <div class="sec-label">Shop</div>
+    <div class="sec-title">Ko-fi storefront</div>
+    <p class="sec-desc">Browse and buy directly below. Every purchase supports our work.</p>
+    <div class="kofi-embed-box">
+      <iframe src="https://ko-fi.com/lbahja/?hidefeed=true&widget=true&embed=true" height="620" title="Ko-fi Shop" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="kofi-support" id="support">
+  <div class="container">
+    <div class="sec-label">Support</div>
+    <div class="sec-title">Buy me a coffee</div>
+    <p class="sec-desc">If these tools helped you, consider supporting. Every coffee keeps us building.</p>
+    <div class="kofi-support-grid">
+      <div class="kofi-support-card">
+        <div class="kofi-icon">☕</div>
+        <h3>One-time Tip</h3>
+        <p>Buy me a coffee. No strings attached. Just a quick thank-you.</p>
+        <a href="https://ko-fi.com/lbahja" target="_blank" class="kofi-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          Tip on Ko-fi
+        </a>
+      </div>
+      <div class="kofi-support-card">
+        <div class="kofi-icon">⭐</div>
+        <h3>Monthly Membership</h3>
+        <p>Get early access to new printables, exclusive trackers, and behind-the-scenes updates.</p>
+        <a href="https://ko-fi.com/lbahja/membership" target="_blank" class="kofi-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          Join Membership
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -668,6 +734,11 @@ gsap.utils.toArray('.print-card').forEach((c,i)=>{
 
 gsap.to('.contact-box',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.contact-box',start:'top 85%'}});
 
+// kofi support cards
+gsap.utils.toArray('.kofi-support-card').forEach((c,i)=>{
+  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+});
+
 // scroll bar
 lenis.on('scroll',()=>{
   const s=lenis.scroll,m=document.documentElement.scrollHeight-innerHeight;
@@ -723,6 +794,16 @@ document.addEventListener('keydown', e => {
     mobileMenu.classList.remove('open');
     lenis.start();
   }
+});
+
+// ============ KO-FI FLOATING WIDGET ============
+kofiWidgetOverlay.draw('lbahja', {
+  'type': 'floating-chat',
+  'floating-chat.donateButton.text': 'Support Me',
+  'floating-chat.donateButton.background-color': '#ff5e5b',
+  'floating-chat.donateButton.text-color': '#fff',
+  'floating-chat.color': '#ffffff',
+  'floating-chat.chatMessage': 'Thanks for visiting! Buy me a coffee if you like my work ☕',
 });
 </script>
 </body>
