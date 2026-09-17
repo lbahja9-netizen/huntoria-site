@@ -306,6 +306,43 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
   .showcase-features{grid-template-columns:1fr}
 }
 
+/* 2D ASSETS SHOWCASE */
+.showcase-2d{padding:100px 0}
+.assets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.asset-category{padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);opacity:0;transform:translateY(30px)}
+.asset-cat-title{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:600;margin-bottom:20px}
+.asset-cat-title svg{color:var(--accent)}
+.asset-count{margin-left:auto;font-size:.75rem;color:var(--dim);font-weight:400}
+.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.icon-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid transparent;transition:all .3s;cursor:pointer}
+.icon-item:hover{background:rgba(124,106,255,0.08);border-color:rgba(124,106,255,0.2)}
+.icon-item img{width:24px;height:24px;stroke:var(--text)}
+.icon-item span{font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pattern-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pattern-preview{width:100%;aspect-ratio:1;border-radius:10px;background-color:rgba(255,255,255,0.02);background-repeat:repeat;border:1px solid var(--border);transition:all .3s}
+.pattern-item:hover .pattern-preview{border-color:rgba(124,106,255,0.3);transform:scale(1.02)}
+.pattern-item span{font-size:.75rem;color:var(--dim)}
+.ui-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ui-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid transparent;transition:all .3s}
+.ui-item:hover{border-color:rgba(124,106,255,0.2)}
+.ui-item img{width:100%;height:auto;border-radius:6px}
+.ui-item span{font-size:.75rem;color:var(--dim)}
+.asset-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.82rem;color:var(--accent);font-weight:500;transition:color .3s}
+.asset-link:hover{color:var(--text)}
+.assets-cta{text-align:center;margin-top:48px;padding:32px;border-radius:16px;background:linear-gradient(135deg,rgba(124,106,255,0.08),rgba(0,229,200,0.04));border:1px solid var(--border)}
+.assets-cta p{color:var(--dim);margin-bottom:20px;font-size:.9rem}
+
+@media(max-width:900px){
+  .assets-grid{grid-template-columns:1fr}
+  .icon-grid{grid-template-columns:repeat(5,1fr)}
+}
+@media(max-width:640px){
+  .icon-grid{grid-template-columns:repeat(4,1fr)}
+  .pattern-grid{grid-template-columns:repeat(2,1fr)}
+  .ui-grid{grid-template-columns:1fr}
+}
+
 /* Lenis */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -347,6 +384,7 @@ html.lenis,html.lenis body{height:auto}
     <a href="#services">Services</a>
     <a href="#ai-services">AI Agents</a>
     <a href="#showcase">3D Work</a>
+    <a href="#assets">Assets</a>
     <a href="#hire">Hire Me</a>
     <a href="#tools">Tools</a>
     <a href="#printables">Shop</a>
@@ -363,6 +401,7 @@ html.lenis,html.lenis body{height:auto}
   <a href="#services">Services</a>
   <a href="#ai-services">AI Agents</a>
   <a href="#showcase">3D Work</a>
+  <a href="#assets">Assets</a>
   <a href="#hire">Hire Me</a>
   <a href="#tools">Tools</a>
   <a href="#printables">Shop</a>
@@ -716,6 +755,127 @@ html.lenis,html.lenis body{height:auto}
           <p>Smooth scroll-triggered animations, 3D card tilts, and interactive mouse-follow effects.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2D ASSETS SHOWCASE -->
+<section class="showcase-2d" id="assets">
+  <div class="container">
+    <div class="sec-label">2D Asset Library</div>
+    <div class="sec-title">Professional Design Assets</div>
+    <p class="sec-desc">Curated collection of SVG icons, seamless patterns, and UI elements. All free for commercial use, ready to drop into any project.</p>
+    
+    <div class="assets-grid">
+      <!-- Icons Section -->
+      <div class="asset-category">
+        <h3 class="asset-cat-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Icons
+          <span class="asset-count">40+ icons</span>
+        </h3>
+        <div class="icon-grid">
+          <div class="icon-item"><img src="assets/2d/icons/home.svg" alt="Home"><span>home</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/search.svg" alt="Search"><span>search</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/user.svg" alt="User"><span>user</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/heart.svg" alt="Heart"><span>heart</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/star.svg" alt="Star"><span>star</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/settings.svg" alt="Settings"><span>settings</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/mail.svg" alt="Mail"><span>mail</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/message.svg" alt="Message"><span>message</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/bell.svg" alt="Bell"><span>bell</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/calendar.svg" alt="Calendar"><span>calendar</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/clock.svg" alt="Clock"><span>clock</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/download.svg" alt="Download"><span>download</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/upload.svg" alt="Upload"><span>upload</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/share.svg" alt="Share"><span>share</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/edit.svg" alt="Edit"><span>edit</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/trash.svg" alt="Trash"><span>trash</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/plus.svg" alt="Plus"><span>plus</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/close.svg" alt="Close"><span>close</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/check.svg" alt="Check"><span>check</span></div>
+          <div class="icon-item"><img src="assets/2d/icons/eye.svg" alt="Eye"><span>eye</span></div>
+        </div>
+        <a href="assets/2d/2d-catalog.json" target="_blank" class="asset-link">View Full Catalog →</a>
+      </div>
+
+      <!-- Patterns Section -->
+      <div class="asset-category">
+        <h3 class="asset-cat-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Patterns
+          <span class="asset-count">6 patterns</span>
+        </h3>
+        <div class="pattern-grid">
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/cross.svg')"></div>
+            <span>cross</span>
+          </div>
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/chevron.svg')"></div>
+            <span>chevron</span>
+          </div>
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/dots.svg')"></div>
+            <span>dots</span>
+          </div>
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/diamonds.svg')"></div>
+            <span>diamonds</span>
+          </div>
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/grid.svg')"></div>
+            <span>grid</span>
+          </div>
+          <div class="pattern-item">
+            <div class="pattern-preview" style="background-image: url('assets/2d/patterns/zigzag.svg')"></div>
+            <span>zigzag</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI Elements Section -->
+      <div class="asset-category">
+        <h3 class="asset-cat-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          UI Elements
+          <span class="asset-count">6 elements</span>
+        </h3>
+        <div class="ui-grid">
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/button-primary.svg" alt="Primary Button">
+            <span>Primary Button</span>
+          </div>
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/button-secondary.svg" alt="Secondary Button">
+            <span>Secondary Button</span>
+          </div>
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/card.svg" alt="Card">
+            <span>Card</span>
+          </div>
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/list-item.svg" alt="List Item">
+            <span>List Item</span>
+          </div>
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/table-row.svg" alt="Table Row">
+            <span>Table Row</span>
+          </div>
+          <div class="ui-item">
+            <img src="assets/2d/ui-elements/stat-card.svg" alt="Stat Card">
+            <span>Stat Card</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assets-cta">
+      <p>All assets are free for commercial use. No attribution required.</p>
+      <a href="https://github.com/lbahja9-netizen/huntoria-site/tree/main/assets/2d" target="_blank" class="btn btn-primary magnetic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download All Assets
+      </a>
     </div>
   </div>
 </section>
@@ -1311,6 +1471,21 @@ kofiWidgetOverlay.draw('lbahja',{'type':'floating-chat','floating-chat.donateBut
   // Feature cards animation
   gsap.utils.toArray('.feature-card').forEach((c, i) => {
     gsap.fromTo(c, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 90%' } });
+  });
+  
+  // 2D Asset categories animation
+  gsap.utils.toArray('.asset-category').forEach((c, i) => {
+    gsap.fromTo(c, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, delay: i * 0.15, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 85%' } });
+  });
+  
+  // Icon items stagger animation
+  ScrollTrigger.create({
+    trigger: '.icon-grid',
+    start: 'top 80%',
+    onEnter: () => {
+      gsap.fromTo('.icon-item', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.03, ease: 'back.out(1.5)' });
+    },
+    once: true
   });
 })();
 </script>

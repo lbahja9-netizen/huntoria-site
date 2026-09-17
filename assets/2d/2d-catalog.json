@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "name": "Huntoria 2D Asset Library",
+    "description": "Free SVG icons, patterns, and UI elements for web design",
+    "license": "MIT / CC0 (Free for commercial use)",
+    "sources": [
+      "Custom created for Huntoria",
+      "Based on Feather Icons style (MIT License)",
+      "Patterns inspired by various free resources"
+    ],
+    "created": "2026-09-17",
+    "total_icons": 40,
+    "total_patterns": 6,
+    "total_ui_elements": 6
+  },
+  "icons": {
+    "navigation": {
+      "home": "2d/icons/home.svg",
+      "search": "2d/icons/search.svg",
+      "user": "2d/icons/user.svg",
+      "users": "2d/icons/users.svg",
+      "layout": "2d/icons/layout.svg",
+      "menu": "2d/icons/chevron-down.svg"
+    },
+    "actions": {
+      "plus": "2d/icons/plus.svg",
+      "close": "2d/icons/close.svg",
+      "check": "2d/icons/check.svg",
+      "edit": "2d/icons/edit.svg",
+      "trash": "2d/icons/trash.svg",
+      "download": "2d/icons/download.svg",
+      "upload": "2d/icons/upload.svg",
+      "share": "2d/icons/share.svg"
+    },
+    "communication": {
+      "mail": "2d/icons/mail.svg",
+      "message": "2d/icons/message.svg",
+      "phone": "2d/icons/phone.svg",
+      "bell": "2d/icons/bell.svg"
+    },
+    "media": {
+      "play": "2d/icons/chevron-right.svg",
+      "pause": "2d/icons/chevron-left.svg",
+      "eye": "2d/icons/eye.svg",
+      "image": "2d/icons/monitor.svg"
+    },
+    "objects": {
+      "heart": "2d/icons/heart.svg",
+      "star": "2d/icons/star.svg",
+      "award": "2d/icons/award.svg",
+      "gift": "2d/icons/gift.svg",
+      "calendar": "2d/icons/calendar.svg",
+      "clock": "2d/icons/clock.svg",
+      "box": "2d/icons/box.svg"
+    },
+    "interfaces": {
+      "settings": "2d/icons/settings.svg",
+      "lock": "2d/icons/lock.svg",
+      "unlock": "2d/icons/unlock.svg",
+      "shield": "2d/icons/shield.svg",
+      "zap": "2d/icons/zap.svg",
+      "lightning": "2d/icons/lightning.svg",
+      "activity": "2d/icons/activity.svg"
+    },
+    "navigation_arrows": {
+      "chevron-left": "2d/icons/chevron-left.svg",
+      "chevron-right": "2d/icons/chevron-right.svg",
+      "chevron-up": "2d/icons/chevron-up.svg",
+      "chevron-down": "2d/icons/chevron-down.svg"
+    },
+    "status": {
+      "info": "2d/icons/info.svg",
+      "alert": "2d/icons/alert-triangle.svg",
+      "check-circle": "2d/icons/check.svg"
+    }
+  },
+  "patterns": {
+    "cross": "2d/patterns/cross.svg",
+    "chevron": "2d/patterns/chevron.svg",
+    "dots": "2d/patterns/dots.svg",
+    "diamonds": "2d/patterns/diamonds.svg",
+    "grid": "2d/patterns/grid.svg",
+    "zigzag": "2d/patterns/zigzag.svg"
+  },
+  "ui_elements": {
+    "button_primary": "2d/ui-elements/button-primary.svg",
+    "button_secondary": "2d/ui-elements/button-secondary.svg",
+    "card": "2d/ui-elements/card.svg",
+    "list_item": "2d/ui-elements/list-item.svg",
+    "table_row": "2d/ui-elements/table-row.svg",
+    "stat_card": "2d/ui-elements/stat-card.svg"
+  },
+  "usage": {
+    "icons": "Copy SVG directly or use as React/Vue components",
+    "patterns": "Use as CSS background-image or SVG fill",
+    "ui_elements": "Reference in design tools or convert to code"
+  }
+}
