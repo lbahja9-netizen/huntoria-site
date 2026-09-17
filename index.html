@@ -30,18 +30,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Lenis Smooth Scroll -->
-<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+<link rel="stylesheet" href="lib/lenis.css">
 
-<!-- GSAP 3.12.7 (latest) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollToPlugin.min.js"></script>
+<!-- GSAP 3.12.7 (local) -->
+<script src="lib/gsap.min.js"></script>
+<script src="lib/ScrollTrigger.min.js"></script>
+<script src="lib/ScrollToPlugin.min.js"></script>
 
-<!-- Three.js r170 (latest) -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.min.js"></script>
+<!-- Three.js r128 (global build) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<!-- Lenis -->
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- Lenis (local) -->
+<script src="lib/lenis.min.js"></script>
 
 <!-- Ko-fi Floating Widget -->
 <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
@@ -823,40 +823,57 @@ const lenis = new Lenis({
   touchMultiplier: 2,
   smoothWheel: true,
 });
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
-
-// Sync Lenis with GSAP ScrollTrigger
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => { lenis.raf(time * 1000); });
 gsap.ticker.lagSmoothing(0);
 
+// ============ CURSOR FOLLOWER ============
+const cursor = document.createElement('div');
+cursor.style.cssText = 'position:fixed;width:20px;height:20px;border-radius:50%;border:2px solid var(--accent);pointer-events:none;z-index:9999;transition:transform .15s ease,opacity .3s;mix-blend-mode:difference;opacity:0';
+document.body.appendChild(cursor);
+const cursorDot = document.createElement('div');
+cursorDot.style.cssText = 'position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent2);pointer-events:none;z-index:9999;transition:transform .08s ease';
+document.body.appendChild(cursorDot);
+let cx=0,cy=0,dx=0,dy=0;
+document.addEventListener('mousemove',e=>{
+  cx=e.clientX;cy=e.clientY;
+  cursorDot.style.left=cx-3+'px';cursorDot.style.top=cy-3+'px';
+  cursor.style.opacity='1';
+});
+(function moveCursor(){
+  dx+=(cx-dx)*.12;dy+=(cy-dy)*.12;
+  cursor.style.left=dx-10+'px';cursor.style.top=dy-10+'px';
+  requestAnimationFrame(moveCursor);
+})();
+document.querySelectorAll('a,button,.btn,.magnetic,.prod-card,.svc-card,.ai-svc-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';cursor.style.borderColor='var(--accent2)'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';cursor.style.borderColor='var(--accent)'});
+});
+
 // ============ DATA ============
 const products = [
-  {cat:'timers',name:'Time Timer MOD 60-min',rating:'4.5',url:'https://www.amazon.ae/dp/B0BK2J71M1?tag=lbahja27-21',desc:'The ADHD classic'},
-  {cat:'timers',name:'EooCoo Visual Timer',rating:'4.5',url:'https://www.amazon.ae/dp/B0C9BT5F38?tag=lbahja27-21',desc:'Budget pick'},
-  {cat:'timers',name:'Cube Pomodoro Timer',rating:'4.6',url:'https://www.amazon.ae/dp/B0D1KMKQ23?tag=lbahja27-21',desc:'5/10/30/60 min'},
-  {cat:'planners',name:'Templatables ADHD Planner',rating:'4.5',url:'https://www.amazon.ae/dp/B0D4ZH3PWT?tag=lbahja27-21',desc:'Daily notepad'},
-  {cat:'planners',name:'PINKE Hourly Planner',rating:'5.0',url:'https://www.amazon.ae/dp/B0DQ17FDQN?tag=lbahja27-21',desc:'Perfect 5 stars'},
-  {cat:'planners',name:'ADHD Daily Planner 7.9x10',rating:'4.4',url:'https://www.amazon.ae/dp/B0H86QPPFC?tag=lbahja27-21',desc:'Large format'},
-  {cat:'planners',name:'ADHD Planner for Women',rating:'4.4',url:'https://www.amazon.ae/dp/B0DPPMQLZP?tag=lbahja27-21',desc:'Tasks + goals'},
-  {cat:'office',name:'Glass Desktop Whiteboard',rating:'4.5',url:'https://www.amazon.ae/dp/B0DPK9LDPF?tag=lbahja27-21',desc:'With storage'},
-  {cat:'office',name:'Under-Desk Drawer',rating:'4.6',url:'https://www.amazon.ae/dp/B0G4MWR1BL?tag=lbahja27-21',desc:'375mm organizer'},
-  {cat:'office',name:'Desk Organizer',rating:'4.3',url:'https://www.amazon.ae/dp/B0CWZ1XGB9?tag=lbahja27-21',desc:'2 drawers'},
-  {cat:'home',name:'Weighted Blanket',rating:'4.5',url:'https://www.amazon.ae/dp/B0C6G6QQ6R?tag=lbahja27-21',desc:'Sleep hugged'},
-  {cat:'home',name:'Dreamegg Sunrise Clock',rating:'4.7',url:'https://www.amazon.ae/dp/B0FRLTDNNT?tag=lbahja27-21',desc:'Mornings without alarms'},
-  {cat:'home',name:'White Noise Machine',rating:'4.6',url:'https://www.amazon.ae/dp/B0DK4SX9NH?tag=lbahja27-21',desc:'Sleep sounds'},
-  {cat:'home',name:'Levoit HEPA Purifier',rating:'4.5',url:'https://www.amazon.ae/dp/B071D58ZY5?tag=lbahja27-21',desc:'Clean air'},
-  {cat:'big',name:'Walking Pad Treadmill',rating:'4.8',url:'https://www.amazon.ae/dp/B0G246X4YL?tag=lbahja27-21',desc:'Walk while you work'},
-  {cat:'big',name:'Hbada Ergonomic Chair',rating:'4.3',url:'https://www.amazon.ae/dp/B0DDNJQB4K?tag=lbahja27-21',desc:'All-day comfort'},
-  {cat:'big',name:'COSORI 8.6L Air Fryer',rating:'4.7',url:'https://www.amazon.ae/dp/B0CYQGT6YF?tag=lbahja27-21',desc:'Family cooking'},
-  {cat:'big',name:'ECOVACS Robot Vacuum',rating:'4.5',url:'https://www.amazon.ae/dp/B0F9YM487H?tag=lbahja27-21',desc:'Vacuum + mop'},
-  {cat:'big',name:'ErGear Standing Desk',rating:'4.4',url:'https://www.amazon.ae/dp/B0B41Z34M7?tag=lbahja27-21',desc:'140x70cm'},
-  {cat:'big',name:'Adjustable Dumbbells',rating:'4.6',url:'https://www.amazon.ae/dp/B0DGXWW1S9?tag=lbahja27-21',desc:'22KG set'},
+  {cat:'timers',name:'Time Timer MOD 60-min',rating:'4.5',url:'https://www.amazon.ae/dp/B0BK2J71M1?tag=lbahja27-21'},
+  {cat:'timers',name:'EooCoo Visual Timer',rating:'4.5',url:'https://www.amazon.ae/dp/B0C9BT5F38?tag=lbahja27-21'},
+  {cat:'timers',name:'Cube Pomodoro Timer',rating:'4.6',url:'https://www.amazon.ae/dp/B0D1KMKQ23?tag=lbahja27-21'},
+  {cat:'planners',name:'Templatables ADHD Planner',rating:'4.5',url:'https://www.amazon.ae/dp/B0D4ZH3PWT?tag=lbahja27-21'},
+  {cat:'planners',name:'PINKE Hourly Planner',rating:'5.0',url:'https://www.amazon.ae/dp/B0DQ17FDQN?tag=lbahja27-21'},
+  {cat:'planners',name:'ADHD Daily Planner 7.9x10',rating:'4.4',url:'https://www.amazon.ae/dp/B0H86QPPFC?tag=lbahja27-21'},
+  {cat:'planners',name:'ADHD Planner for Women',rating:'4.4',url:'https://www.amazon.ae/dp/B0DPPMQLZP?tag=lbahja27-21'},
+  {cat:'office',name:'Glass Desktop Whiteboard',rating:'4.5',url:'https://www.amazon.ae/dp/B0DPK9LDPF?tag=lbahja27-21'},
+  {cat:'office',name:'Under-Desk Drawer',rating:'4.6',url:'https://www.amazon.ae/dp/B0G4MWR1BL?tag=lbahja27-21'},
+  {cat:'office',name:'Desk Organizer',rating:'4.3',url:'https://www.amazon.ae/dp/B0CWZ1XGB9?tag=lbahja27-21'},
+  {cat:'home',name:'Weighted Blanket',rating:'4.5',url:'https://www.amazon.ae/dp/B0C6G6QQ6R?tag=lbahja27-21'},
+  {cat:'home',name:'Dreamegg Sunrise Clock',rating:'4.7',url:'https://www.amazon.ae/dp/B0FRLTDNNT?tag=lbahja27-21'},
+  {cat:'home',name:'White Noise Machine',rating:'4.6',url:'https://www.amazon.ae/dp/B0DK4SX9NH?tag=lbahja27-21'},
+  {cat:'home',name:'Levoit HEPA Purifier',rating:'4.5',url:'https://www.amazon.ae/dp/B071D58ZY5?tag=lbahja27-21'},
+  {cat:'big',name:'Walking Pad Treadmill',rating:'4.8',url:'https://www.amazon.ae/dp/B0G246X4YL?tag=lbahja27-21'},
+  {cat:'big',name:'Hbada Ergonomic Chair',rating:'4.3',url:'https://www.amazon.ae/dp/B0DDNJQB4K?tag=lbahja27-21'},
+  {cat:'big',name:'COSORI 8.6L Air Fryer',rating:'4.7',url:'https://www.amazon.ae/dp/B0CYQGT6YF?tag=lbahja27-21'},
+  {cat:'big',name:'ECOVACS Robot Vacuum',rating:'4.5',url:'https://www.amazon.ae/dp/B0F9YM487H?tag=lbahja27-21'},
+  {cat:'big',name:'ErGear Standing Desk',rating:'4.4',url:'https://www.amazon.ae/dp/B0B41Z34M7?tag=lbahja27-21'},
+  {cat:'big',name:'Adjustable Dumbbells',rating:'4.6',url:'https://www.amazon.ae/dp/B0DGXWW1S9?tag=lbahja27-21'},
 ];
 
 // ============ CLICK TRACKING ============
@@ -864,23 +881,15 @@ const clickLog = JSON.parse(localStorage.getItem('huntoria_clicks') || '[]');
 function trackClick(type, url, label) {
   clickLog.push({ type, url, label, ts: Date.now() });
   localStorage.setItem('huntoria_clicks', JSON.stringify(clickLog));
-  console.log(`[Track] ${type}: ${label} → ${url}`);
 }
-
-// Intercept all affiliate link clicks
 document.addEventListener('click', e => {
   const link = e.target.closest('a[href]');
   if (!link) return;
   const href = link.href;
-  if (href.includes('amazon.ae')) {
-    trackClick('affiliate', href, link.querySelector('h4')?.textContent || link.textContent.trim().slice(0, 40));
-  } else if (href.includes('upwork.com')) {
-    trackClick('upwork', href, 'Upwork Profile');
-  } else if (href.includes('ko-fi.com')) {
-    trackClick('kofi', href, 'Ko-fi Shop');
-  } else if (href.includes('pinterest.com')) {
-    trackClick('pinterest', href, 'Pinterest');
-  }
+  if (href.includes('amazon.ae')) trackClick('affiliate', href, link.querySelector('h4')?.textContent || link.textContent.trim().slice(0, 40));
+  else if (href.includes('upwork.com')) trackClick('upwork', href, 'Upwork Profile');
+  else if (href.includes('ko-fi.com')) trackClick('kofi', href, 'Ko-fi');
+  else if (href.includes('pinterest.com')) trackClick('pinterest', href, 'Pinterest');
 });
 
 // ============ RENDER PRODUCTS ============
@@ -892,17 +901,14 @@ function renderProducts(cat){
       <div class="prod-cat">${p.cat}</div>
       <h4>${p.name}</h4>
       <div class="rating"><strong>${p.rating}</strong> stars</div>
-      <span class="prod-btn">
-        View on Amazon
+      <span class="prod-btn">View on Amazon
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
       </span>
     </a>
   `).join('');
-  gsap.fromTo('.prod-card',{opacity:0,y:40},{opacity:1,y:0,duration:.6,stagger:.05,ease:'power3.out'});
+  gsap.fromTo('.prod-card',{opacity:0,y:50,scale:.95},{opacity:1,y:0,scale:1,duration:.7,stagger:.06,ease:'back.out(1.2)'});
 }
 renderProducts('all');
-
-// tabs
 document.querySelectorAll('.prod-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('active'));
@@ -911,7 +917,7 @@ document.querySelectorAll('.prod-tab').forEach(tab=>{
   });
 });
 
-// ============ THREE.JS PARTICLES (r170) ============
+// ============ THREE.JS PARTICLES ============
 const canvas = document.getElementById('bg');
 const scene = new THREE.Scene();
 const cam = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
@@ -920,145 +926,149 @@ ren.setSize(innerWidth,innerHeight);
 ren.setPixelRatio(Math.min(devicePixelRatio,2));
 
 const geo = new THREE.BufferGeometry();
-const cnt = 1800;
+const cnt = 2200;
 const pos = new Float32Array(cnt*3);
 const cols = new Float32Array(cnt*3);
-for(let i=0;i<cnt*3;i+=3){
-  pos[i]=(Math.random()-.5)*12;
-  pos[i+1]=(Math.random()-.5)*12;
-  pos[i+2]=(Math.random()-.5)*12;
+const sizes = new Float32Array(cnt);
+for(let i=0;i<cnt;i++){
+  pos[i*3]=(Math.random()-.5)*14;
+  pos[i*3+1]=(Math.random()-.5)*14;
+  pos[i*3+2]=(Math.random()-.5)*14;
   const c=new THREE.Color();
-  c.setHSL(.55+Math.random()*.15,.7,.45+Math.random()*.15);
-  cols[i]=c.r;cols[i+1]=c.g;cols[i+2]=c.b;
+  c.setHSL(.55+Math.random()*.2,.75,.5+Math.random()*.2);
+  cols[i*3]=c.r;cols[i*3+1]=c.g;cols[i*3+2]=c.b;
+  sizes[i]=Math.random()*.015+.005;
 }
 geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
 geo.setAttribute('color',new THREE.BufferAttribute(cols,3));
-const mat=new THREE.PointsMaterial({size:.012,vertexColors:true,transparent:true,opacity:.5,blending:THREE.AdditiveBlending});
+const mat=new THREE.PointsMaterial({size:.014,vertexColors:true,transparent:true,opacity:.6,blending:THREE.AdditiveBlending,sizeAttenuation:true});
 const pts=new THREE.Points(geo,mat);
 scene.add(pts);
 cam.position.z=3.5;
 
-let mx=0,my=0;
-document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.4;my=(e.clientY/innerHeight-.5)*.4});
+let mx=0,my=0,scrollY=0;
+document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.5;my=(e.clientY/innerHeight-.5)*.5});
+lenis.on('scroll',e=>{scrollY=e.animatedScroll||e});
 
 (function anim(){
   requestAnimationFrame(anim);
-  pts.rotation.y+=.00025;
-  pts.rotation.x+=.00008;
-  pts.rotation.y+=(mx-pts.rotation.y)*.015;
-  pts.rotation.x+=(my-pts.rotation.x)*.015;
+  const t=Date.now()*.001;
+  pts.rotation.y+=.0003;
+  pts.rotation.x=Math.sin(t*.2)*.1+my*.3;
+  pts.rotation.y=mx*.3+t*.05;
+  const p=pts.geometry.attributes.position.array;
+  for(let i=0;i<cnt;i++){
+    p[i*3+1]+=Math.sin(t+i*.1)*.0003;
+  }
+  pts.geometry.attributes.position.needsUpdate=true;
   ren.render(scene,cam);
 })();
-
 addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight)});
 
 // ============ GSAP ANIMATIONS ============
 gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
 
-gsap.to('nav',{opacity:1,y:0,duration:1,delay:.3,ease:'power3.out'});
-gsap.to('.hero-badge',{opacity:1,y:0,duration:1,delay:.6,ease:'power3.out'});
-gsap.to('.hero h1',{opacity:1,y:0,duration:1.2,delay:.8,ease:'power3.out'});
-gsap.to('.hero-sub',{opacity:1,y:0,duration:1,delay:1.1,ease:'power3.out'});
-gsap.to('.hero-btns',{opacity:1,y:0,duration:1,delay:1.3,ease:'power3.out'});
-gsap.fromTo('.hero h1 .line span',{y:'110%',skewY:4},{y:'0%',skewY:0,duration:1,delay:.9,ease:'power3.out',stagger:.12});
+// Preloader fade
+gsap.to('body',{opacity:1,duration:.5});
 
-gsap.to('.stats',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.stats',start:'top 85%'}});
+// Nav entrance
+gsap.fromTo('nav',{opacity:0,y:-60},{opacity:1,y:0,duration:1.2,delay:.2,ease:'power4.out'});
+
+// Hero entrance - staggered reveal
+const heroTl = gsap.timeline({delay:.4});
+heroTl.fromTo('.hero-badge',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:.8,ease:'back.out(1.4)'})
+  .fromTo('.hero h1 .line span',{y:'120%',skewY:6,opacity:0},{y:'0%',skewY:0,opacity:1,duration:1,ease:'power4.out',stagger:.15},'-=.3')
+  .fromTo('.hero-sub',{opacity:0,y:30},{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.5')
+  .fromTo('.hero-btns',{opacity:0,y:30,scale:.95},{opacity:1,y:0,scale:1,duration:.8,ease:'back.out(1.2)'},'-=.4');
+
+// Stats counter animation
+gsap.fromTo('.stats',{opacity:0,y:60},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.stats',start:'top 85%'}});
 document.querySelectorAll('.stat-num').forEach(el=>{
   const t=+el.dataset.count;
-  ScrollTrigger.create({trigger:el,start:'top 90%',onEnter:()=>{gsap.to(el,{innerText:t,duration:2,snap:{innerText:1},ease:'power2.out'})},once:true});
+  ScrollTrigger.create({trigger:el,start:'top 90%',onEnter:()=>{
+    gsap.fromTo(el,{innerText:0},{innerText:t,duration:2.5,snap:{innerText:1},ease:'power2.out'});
+    gsap.fromTo(el,{scale:.5,opacity:0},{scale:1,opacity:1,duration:.6,ease:'back.out(2)'});
+  },once:true});
 });
 
+// Service cards - 3D tilt effect
 gsap.utils.toArray('.svc-card').forEach((c,i)=>{
-  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.08,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+  gsap.fromTo(c,{opacity:0,y:60,rotateX:10},{opacity:1,y:0,rotateX:0,duration:.8,delay:i*.1,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)/r.width*8;
+    const y=(e.clientY-r.top-r.height/2)/r.height*8;
+    gsap.to(c,{rotateY:x,rotateX:-y,duration:.3,ease:'power2.out',transformPerspective:800});
+  });
+  c.addEventListener('mouseleave',()=>{gsap.to(c,{rotateY:0,rotateX:0,duration:.5,ease:'elastic.out(1,.5)'})});
 });
 
-gsap.to('.hire-info',{opacity:1,x:0,duration:1,scrollTrigger:{trigger:'.hire-box',start:'top 80%'}});
-gsap.to('.hire-visual',{opacity:1,x:0,duration:1,delay:.2,scrollTrigger:{trigger:'.hire-box',start:'top 80%'}});
-
-ScrollTrigger.create({trigger:'.prod-grid',start:'top 85%',onEnter:()=>{gsap.to('.prod-card',{opacity:1,y:0,duration:.5,stagger:.04,ease:'power3.out'})},once:true});
-
-gsap.utils.toArray('.print-card').forEach((c,i)=>{
-  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
-});
-
-gsap.to('.contact-box',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.contact-box',start:'top 85%'}});
-
-// kofi support cards
-gsap.utils.toArray('.kofi-support-card').forEach((c,i)=>{
-  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
-});
-
-// ai service cards
+// AI service cards
 gsap.utils.toArray('.ai-svc-card').forEach((c,i)=>{
-  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.06,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});
+  gsap.fromTo(c,{opacity:0,y:70,scale:.92},{opacity:1,y:0,scale:1,duration:.8,delay:i*.07,ease:'back.out(1.1)',scrollTrigger:{trigger:c,start:'top 92%'}});
 });
 
-// scroll bar
+// Hire section
+const hireTl = gsap.timeline({scrollTrigger:{trigger:'.hire-box',start:'top 75%'}});
+hireTl.fromTo('.hire-info',{opacity:0,x:-60},{opacity:1,x:0,duration:1,ease:'power4.out'})
+  .fromTo('.hire-visual',{opacity:0,x:60,scale:.95},{opacity:1,x:0,scale:1,duration:1,ease:'power4.out'},'-=.7');
+
+// Skill tags pop in
+gsap.utils.toArray('.skill-tag').forEach((t,i)=>{
+  gsap.fromTo(t,{opacity:0,scale:.7,y:10},{opacity:1,scale:1,y:0,duration:.4,delay:i*.05,ease:'back.out(2)',scrollTrigger:{trigger:'.skills-wrap',start:'top 85%'}});
+});
+
+// Product cards
+ScrollTrigger.create({trigger:'.prod-grid',start:'top 85%',onEnter:()=>{gsap.fromTo('.prod-card',{opacity:0,y:50,scale:.95},{opacity:1,y:0,scale:1,duration:.6,stagger:.05,ease:'back.out(1.2)'})},once:true});
+
+// Print cards
+gsap.utils.toArray('.print-card').forEach((c,i)=>{
+  gsap.fromTo(c,{opacity:0,y:50,rotateY:5},{opacity:1,y:0,rotateY:0,duration:.8,delay:i*.2,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+});
+
+// Ko-fi support cards
+gsap.utils.toArray('.kofi-support-card').forEach((c,i)=>{
+  gsap.fromTo(c,{opacity:0,y:50,scale:.9},{opacity:1,y:0,scale:1,duration:.7,delay:i*.15,ease:'back.out(1.3)',scrollTrigger:{trigger:c,start:'top 88%'}});
+});
+
+// Contact box
+gsap.fromTo('.contact-box',{opacity:0,y:60,scale:.95},{opacity:1,y:0,scale:1,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.contact-box',start:'top 85%'}});
+
+// Scroll progress bar
 lenis.on('scroll',()=>{
   const s=lenis.scroll,m=document.documentElement.scrollHeight-innerHeight;
   document.getElementById('scrollBar').style.width=(s/m*100)+'%';
 });
 
-// smooth scroll (Lenis-powered)
+// Smooth scroll links
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if(target) lenis.scrollTo(target,{offset:-80,duration:1.5});
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target)lenis.scrollTo(target,{offset:-80,duration:1.5});
   });
 });
 
-// magnetic buttons
+// Magnetic buttons
 document.querySelectorAll('.magnetic').forEach(btn=>{
   btn.addEventListener('mousemove',e=>{
     const r=btn.getBoundingClientRect();
-    const x=e.clientX-r.left-r.width/2;
-    const y=e.clientY-r.top-r.height/2;
-    gsap.to(btn,{x:x*.2,y:y*.2,duration:.3,ease:'power2.out'});
+    gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.25,duration:.3,ease:'power2.out'});
   });
-  btn.addEventListener('mouseleave',()=>{gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,.4)'})});
+  btn.addEventListener('mouseleave',()=>{gsap.to(btn,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'})});
 });
 
-// ============ HAMBURGER MENU ============
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
-  if (mobileMenu.classList.contains('open')) {
-    lenis.stop();
-  } else {
-    lenis.start();
-  }
+// ============ HAMBURGER ============
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('active');mobileMenu.classList.toggle('open');
+  mobileMenu.classList.contains('open')?lenis.stop():lenis.start();
 });
+mobileMenu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{hamburger.classList.remove('active');mobileMenu.classList.remove('open');lenis.start()})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classList.contains('open')){hamburger.classList.remove('active');mobileMenu.classList.remove('open');lenis.start()}});
 
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-    lenis.start();
-  });
-});
-
-// Close on Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-    lenis.start();
-  }
-});
-
-// ============ KO-FI FLOATING WIDGET ============
-kofiWidgetOverlay.draw('lbahja', {
-  'type': 'floating-chat',
-  'floating-chat.donateButton.text': 'Support Me',
-  'floating-chat.donateButton.background-color': '#ff5e5b',
-  'floating-chat.donateButton.text-color': '#fff',
-  'floating-chat.color': '#ffffff',
-  'floating-chat.chatMessage': 'Thanks for visiting! Buy me a coffee if you like my work ☕',
-});
+// ============ KO-FI FLOATING ============
+kofiWidgetOverlay.draw('lbahja',{'type':'floating-chat','floating-chat.donateButton.text':'Support Me','floating-chat.donateButton.background-color':'#ff5e5b','floating-chat.donateButton.text-color':'#fff','floating-chat.color':'#ffffff','floating-chat.chatMessage':'Thanks for visiting! Buy me a coffee if you like my work'});
 </script>
 </body>
 </html>
