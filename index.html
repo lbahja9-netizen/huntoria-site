@@ -135,6 +135,37 @@ section{position:relative;z-index:2}
 .svc-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;letter-spacing:-0.01em}
 .svc-card p{color:var(--dim);font-size:.9rem;line-height:1.7}
 
+/* AI SERVICES FOR SALE */
+.ai-services{padding:100px 0}
+.ai-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.ai-svc-card{padding:32px 28px;border-radius:18px;background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);opacity:0;transform:translateY(50px);display:flex;flex-direction:column}
+.ai-svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.ai-svc-card:hover{transform:translateY(-6px);border-color:rgba(124,106,255,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.ai-svc-card:hover::before{opacity:1}
+.ai-svc-badge{position:absolute;top:16px;right:16px;padding:4px 10px;border-radius:6px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.ai-svc-badge.popular{background:rgba(255,184,0,0.15);color:var(--amber);border:1px solid rgba(255,184,0,0.25)}
+.ai-svc-badge.new{background:rgba(0,229,200,0.12);color:var(--accent2);border:1px solid rgba(0,229,200,0.25)}
+.ai-svc-badge.pro{background:rgba(124,106,255,0.12);color:var(--accent);border:1px solid rgba(124,106,255,0.25)}
+.ai-svc-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px}
+.ai-svc-icon.vio{background:rgba(124,106,255,0.12);color:var(--accent)}
+.ai-svc-icon.cyan{background:rgba(0,229,200,0.12);color:var(--accent2)}
+.ai-svc-icon.pink{background:rgba(255,92,138,0.12);color:var(--accent3)}
+.ai-svc-icon.amber{background:rgba(255,184,0,0.12);color:var(--amber)}
+.ai-svc-card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em}
+.ai-svc-card .ai-svc-desc{color:var(--dim);font-size:.88rem;line-height:1.65;margin-bottom:16px;flex:1}
+.ai-svc-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.ai-svc-feat{padding:4px 10px;border-radius:6px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:.72rem;color:var(--dim);font-weight:500}
+.ai-svc-price{display:flex;align-items:baseline;gap:6px;margin-bottom:18px}
+.ai-svc-price .from{font-size:.78rem;color:var(--dim)}
+.ai-svc-price .amount{font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ai-svc-price .unit{font-size:.78rem;color:var(--dim)}
+.ai-svc-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;font-weight:600;font-size:.88rem;transition:all .3s;text-decoration:none;justify-content:center;width:100%}
+.ai-svc-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--glow)}
+.ai-svc-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--glow)}
+.ai-svc-btn.ghost{background:var(--surface);border:1px solid var(--border);color:var(--text)}
+.ai-svc-btn.ghost:hover{background:var(--surface-hover);border-color:rgba(255,255,255,0.15)}
+.ai-svc-btn svg{width:16px;height:16px}
+
 /* HIRE ME */
 .hire{padding:100px 0}
 .hire-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:start}
@@ -255,6 +286,7 @@ html.lenis,html.lenis body{height:auto}
 /* RESPONSIVE */
 @media(max-width:900px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  .ai-svc-grid{grid-template-columns:repeat(2,1fr)}
   .hire-box{grid-template-columns:1fr}
   .print-cards{grid-template-columns:1fr}
   .kofi-support-grid{grid-template-columns:1fr}
@@ -266,6 +298,7 @@ html.lenis,html.lenis body{height:auto}
   .hamburger{display:flex}
   .hero{padding:120px 20px 60px}
   .services-grid{grid-template-columns:1fr}
+  .ai-svc-grid{grid-template-columns:1fr}
   .stats{flex-direction:column;gap:28px}
   .prod-grid{grid-template-columns:1fr}
   .hero-btns{flex-direction:column;align-items:center}
@@ -283,6 +316,7 @@ html.lenis,html.lenis body{height:auto}
   <div class="logo"><span>Huntoria</span></div>
   <div class="nav-links">
     <a href="#services">Services</a>
+    <a href="#ai-services">AI Agents</a>
     <a href="#hire">Hire Me</a>
     <a href="#tools">Tools</a>
     <a href="#printables">Shop</a>
@@ -297,6 +331,7 @@ html.lenis,html.lenis body{height:auto}
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
+  <a href="#ai-services">AI Agents</a>
   <a href="#hire">Hire Me</a>
   <a href="#tools">Tools</a>
   <a href="#printables">Shop</a>
@@ -380,6 +415,220 @@ html.lenis,html.lenis body{height:auto}
         </div>
         <h3>AI-Powered Workflow</h3>
         <p>ChatGPT, Midjourney, Canva, CapCut integration. Faster turnaround, higher quality, professional output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI AGENT SERVICES FOR SALE -->
+<section class="ai-services" id="ai-services">
+  <div class="container">
+    <div class="sec-label">AI Services</div>
+    <div class="sec-title">AI agent services for sale</div>
+    <p class="sec-desc">Ready-made AI solutions. Pick a service, get it deployed. Custom builds available.</p>
+    <div class="ai-svc-grid">
+      <!-- 1. AI Chatbot -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge popular">Popular</span>
+        <div class="ai-svc-icon vio">🤖</div>
+        <h3>AI Customer Service Chatbot</h3>
+        <p class="ai-svc-desc">Custom-trained chatbot for your business. Handles support, FAQs, and lead capture 24/7. Integrates with WhatsApp, Telegram, web, or your app.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">GPT-4 Powered</span>
+          <span class="ai-svc-feat">Multi-channel</span>
+          <span class="ai-svc-feat">Custom Training</span>
+          <span class="ai-svc-feat">Analytics</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$299</span>
+          <span class="unit">/ build</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 2. AI Workflow Automation -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge new">New</span>
+        <div class="ai-svc-icon cyan">⚡</div>
+        <h3>AI Workflow Automation</h3>
+        <p class="ai-svc-desc">Automate repetitive tasks with AI agents. Data entry, email routing, report generation, CRM updates — set it and forget it.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">n8n / Make</span>
+          <span class="ai-svc-feat">API Integration</span>
+          <span class="ai-svc-feat">Scheduled Tasks</span>
+          <span class="ai-svc-feat">Error Handling</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$199</span>
+          <span class="unit">/ workflow</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 3. RAG / Document AI -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge pro">Pro</span>
+        <div class="ai-svc-icon pink">📚</div>
+        <h3>RAG Document Assistant</h3>
+        <p class="ai-svc-desc">Upload your docs, PDFs, or knowledge base. AI answers questions from YOUR data. Perfect for internal tools, legal, medical, or support teams.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Vector Search</span>
+          <span class="ai-svc-feat">PDF/Docs Ingest</span>
+          <span class="ai-svc-feat">Citations</span>
+          <span class="ai-svc-feat">Private Deploy</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$499</span>
+          <span class="unit">/ build</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 4. AI Content Engine -->
+      <div class="ai-svc-card">
+        <div class="ai-svc-icon amber">✍️</div>
+        <h3>AI Content Engine</h3>
+        <p class="ai-svc-desc">Automated blog posts, social media content, product descriptions, and newsletters. Brand-voice trained, SEO-optimized, ready to publish.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Brand Voice</span>
+          <span class="ai-svc-feat">SEO Optimized</span>
+          <span class="ai-svc-feat">Bulk Generate</span>
+          <span class="ai-svc-feat">Scheduling</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$149</span>
+          <span class="unit">/ month</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 5. AI Voice Agent -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge new">New</span>
+        <div class="ai-svc-icon vio">🎙️</div>
+        <h3>AI Voice Agent</h3>
+        <p class="ai-svc-desc">Phone-based AI agent that answers calls, qualifies leads, books appointments, and handles customer inquiries. Sounds human, works 24/7.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Voice AI</span>
+          <span class="ai-svc-feat">Lead Qualify</span>
+          <span class="ai-svc-feat">Appointment Book</span>
+          <span class="ai-svc-feat">Call Recording</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$399</span>
+          <span class="unit">/ build</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 6. AI Data Analyst -->
+      <div class="ai-svc-card">
+        <div class="ai-svc-icon cyan">📊</div>
+        <h3>AI Data Analyst</h3>
+        <p class="ai-svc-desc">Turn raw data into insights. AI-powered dashboards, reports, trend analysis, and predictions. Excel, CSV, SQL, or API data sources.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Dashboards</span>
+          <span class="ai-svc-feat">Predictions</span>
+          <span class="ai-svc-feat">Automated Reports</span>
+          <span class="ai-svc-feat">Any Data Source</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$249</span>
+          <span class="unit">/ project</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 7. AI Social Media Manager -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge popular">Popular</span>
+        <div class="ai-svc-icon pink">📱</div>
+        <h3>AI Social Media Manager</h3>
+        <p class="ai-svc-desc">AI creates, schedules, and posts content across Instagram, TikTok, Twitter, LinkedIn. Captions, hashtags, and engagement tracking included.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Multi-Platform</span>
+          <span class="ai-svc-feat">Auto-Post</span>
+          <span class="ai-svc-feat">Hashtag AI</span>
+          <span class="ai-svc-feat">Analytics</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$199</span>
+          <span class="unit">/ month</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 8. Custom AI Agent -->
+      <div class="ai-svc-card">
+        <span class="ai-svc-badge pro">Pro</span>
+        <div class="ai-svc-icon amber">🧠</div>
+        <h3>Custom AI Agent</h3>
+        <p class="ai-svc-desc">Tell me what you need. I'll build a custom AI agent from scratch — any workflow, any platform, any complexity. Your imagination is the limit.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">Fully Custom</span>
+          <span class="ai-svc-feat">Any Platform</span>
+          <span class="ai-svc-feat">Multi-Agent</span>
+          <span class="ai-svc-feat">Ongoing Support</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$599</span>
+          <span class="unit">/ project</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <!-- 9. AI Integration -->
+      <div class="ai-svc-card">
+        <div class="ai-svc-icon vio">🔗</div>
+        <h3>AI Integration & Setup</h3>
+        <p class="ai-svc-desc">Connect AI to your existing tools. CRM, email, Slack, Notion, Google Sheets, Shopify — AI layer on top of what you already use.</p>
+        <div class="ai-svc-features">
+          <span class="ai-svc-feat">CRM Integration</span>
+          <span class="ai-svc-feat">Slack / Notion</span>
+          <span class="ai-svc-feat">Shopify / Woo</span>
+          <span class="ai-svc-feat">API Setup</span>
+        </div>
+        <div class="ai-svc-price">
+          <span class="from">from</span>
+          <span class="amount">$149</span>
+          <span class="unit">/ integration</span>
+        </div>
+        <a href="https://www.upwork.com/freelancers/~0164e57a93cbc35d95" target="_blank" class="ai-svc-btn primary magnetic">
+          Order on Upwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -737,6 +986,11 @@ gsap.to('.contact-box',{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.contac
 // kofi support cards
 gsap.utils.toArray('.kofi-support-card').forEach((c,i)=>{
   gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+});
+
+// ai service cards
+gsap.utils.toArray('.ai-svc-card').forEach((c,i)=>{
+  gsap.to(c,{opacity:1,y:0,duration:.7,delay:i*.06,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});
 });
 
 // scroll bar
