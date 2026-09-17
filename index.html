@@ -39,6 +39,7 @@
 
 <!-- Three.js r128 (local) -->
 <script src="lib/three.min.js"></script>
+<script src="lib/GLTFLoader.js"></script>
 
 <!-- Lenis (local) -->
 <script src="lib/lenis.min.js"></script>
@@ -277,6 +278,34 @@ footer{padding:40px 32px;border-top:1px solid var(--border);position:relative;z-
 .mobile-menu .mobile-cta{padding:14px 32px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important;margin-top:12px}
 .mobile-menu .mobile-cta::after{display:none!important}
 
+/* 3D SHOWCASE */
+.showcase-3d{padding:100px 0}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:start}
+.showcase-viewer{position:relative;border-radius:20px;background:var(--surface);border:1px solid var(--border);overflow:hidden;aspect-ratio:16/10}
+.showcase-viewer canvas{width:100%!important;height:100%!important;display:block}
+.viewer-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:.9rem;z-index:1}
+.viewer-controls{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;padding:8px;background:rgba(6,6,14,0.8);backdrop-filter:blur(12px);border-radius:12px;border:1px solid var(--border);z-index:10}
+.viewer-btn{width:40px;height:40px;border-radius:10px;background:transparent;border:1px solid transparent;color:var(--dim);cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;padding:8px}
+.viewer-btn:hover,.viewer-btn.active{background:rgba(124,106,255,0.15);border-color:var(--accent);color:var(--text)}
+.viewer-btn svg{width:100%;height:100%}
+.viewer-info{position:absolute;bottom:80px;left:16px;z-index:10}
+.viewer-info h4{font-size:1rem;font-weight:600;margin-bottom:4px}
+.viewer-info p{font-size:.78rem;color:var(--dim)}
+.showcase-features{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feature-card{padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);transition:all .4s;opacity:0;transform:translateY(30px)}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(124,106,255,0.3)}
+.feature-icon{font-size:1.8rem;margin-bottom:12px}
+.feature-card h4{font-size:.95rem;font-weight:600;margin-bottom:6px}
+.feature-card p{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+@media(max-width:900px){
+  .showcase-grid{grid-template-columns:1fr}
+  .showcase-features{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .showcase-features{grid-template-columns:1fr}
+}
+
 /* Lenis */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -317,6 +346,7 @@ html.lenis,html.lenis body{height:auto}
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#ai-services">AI Agents</a>
+    <a href="#showcase">3D Work</a>
     <a href="#hire">Hire Me</a>
     <a href="#tools">Tools</a>
     <a href="#printables">Shop</a>
@@ -332,6 +362,7 @@ html.lenis,html.lenis body{height:auto}
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
   <a href="#ai-services">AI Agents</a>
+  <a href="#showcase">3D Work</a>
   <a href="#hire">Hire Me</a>
   <a href="#tools">Tools</a>
   <a href="#printables">Shop</a>
@@ -629,6 +660,61 @@ html.lenis,html.lenis body{height:auto}
           Order on Upwork
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D SHOWCASE -->
+<section class="showcase-3d" id="showcase">
+  <div class="container">
+    <div class="sec-label">3D Capabilities</div>
+    <div class="sec-title">Interactive 3D Experiences</div>
+    <p class="sec-desc">We create immersive web experiences with Three.js, GSAP animations, and real-time 3D rendering. Drag to rotate, scroll to explore.</p>
+    <div class="showcase-grid">
+      <div class="showcase-viewer" id="showcaseViewer">
+        <div class="viewer-loading">Loading 3D Model...</div>
+        <canvas id="showcaseCanvas"></canvas>
+        <div class="viewer-controls">
+          <button class="viewer-btn active" data-model="bust" title="Marble Bust">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+          </button>
+          <button class="viewer-btn" data-model="horse" title="Horse Statue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </button>
+          <button class="viewer-btn" data-model="lemon" title="Lemon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 010 20"/><path d="M2 12h20"/></svg>
+          </button>
+          <button class="viewer-btn" data-model="lightbulb" title="Lightbulb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg>
+          </button>
+        </div>
+        <div class="viewer-info">
+          <h4 id="modelTitle">Marble Bust</h4>
+          <p id="modelDesc">Renaissance-style sculpture with PBR materials</p>
+        </div>
+      </div>
+      <div class="showcase-features">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h4>PBR Materials</h4>
+          <p>Physically-based rendering with diffuse, normal, roughness, and ARM maps for photorealistic surfaces.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h4>HDRI Lighting</h4>
+          <p>Real-world lighting environments from Poly Haven for accurate reflections and shadows.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h4>Optimized for Web</h4>
+          <p>Compressed glTF models with LOD support. Fast loading, smooth 60fps performance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎭</div>
+          <h4>GSAP Animations</h4>
+          <p>Smooth scroll-triggered animations, 3D card tilts, and interactive mouse-follow effects.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1069,6 +1155,164 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classLis
 
 // ============ KO-FI FLOATING ============
 kofiWidgetOverlay.draw('lbahja',{'type':'floating-chat','floating-chat.donateButton.text':'Support Me','floating-chat.donateButton.background-color':'#ff5e5b','floating-chat.donateButton.text-color':'#fff','floating-chat.color':'#ffffff','floating-chat.chatMessage':'Thanks for visiting! Buy me a coffee if you like my work'});
+
+// ============ 3D SHOWCASE VIEWER ============
+(function(){
+  const canvas = document.getElementById('showcaseCanvas');
+  if(!canvas) return;
+  
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+  
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(ambientLight);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(5, 10, 7);
+  scene.add(directionalLight);
+  const backLight = new THREE.DirectionalLight(0x7c6aff, 0.3);
+  backLight.position.set(-5, 5, -5);
+  scene.add(backLight);
+  
+  // Model data
+  const models = {
+    bust: { url: 'assets/3d-models/marble_bust/marble_bust.gltf', title: 'Marble Bust', desc: 'Renaissance-style sculpture with PBR materials' },
+    horse: { url: 'assets/3d-models/horse_statue/horse_statue.gltf', title: 'Horse Statue', desc: 'Glossy porcelain figurine on wooden base' },
+    lemon: { url: 'assets/3d-models/lemon/lemon.gltf', title: 'Lemon', desc: 'Organic fruit with detailed bump mapping' },
+    lightbulb: { url: 'assets/3d-models/lightbulb/lightbulb.gltf', title: 'Lightbulb', desc: 'Vintage glass bulb with emissive filament' }
+  };
+  
+  let currentModel = null;
+  let isDragging = false;
+  let previousMousePosition = { x: 0, y: 0 };
+  
+  // Load model
+  function loadModel(name) {
+    const loader = new THREE.GLTFLoader();
+    const modelData = models[name];
+    
+    document.getElementById('modelTitle').textContent = modelData.title;
+    document.getElementById('modelDesc').textContent = modelData.desc;
+    document.querySelector('.viewer-loading').style.display = 'flex';
+    
+    if(currentModel) {
+      scene.remove(currentModel);
+    }
+    
+    loader.load(modelData.url, (gltf) => {
+      const model = gltf.scene;
+      
+      // Center and scale model
+      const box = new THREE.Box3().setFromObject(model);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = 2 / maxDim;
+      
+      model.scale.setScalar(scale);
+      model.position.sub(center.multiplyScalar(scale));
+      
+      scene.add(model);
+      currentModel = model;
+      
+      document.querySelector('.viewer-loading').style.display = 'none';
+      
+      // Animate entrance
+      gsap.fromTo(model.scale, { x: 0, y: 0, z: 0 }, { x: scale, y: scale, z: scale, duration: 0.8, ease: 'back.out(1.5)' });
+    }, undefined, (error) => {
+      console.error('Error loading model:', error);
+      document.querySelector('.viewer-loading').textContent = 'Error loading model';
+    });
+  }
+  
+  // Mouse interaction
+  canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    previousMousePosition = { x: e.clientX, y: e.clientY };
+  });
+  
+  canvas.addEventListener('mousemove', (e) => {
+    if(!isDragging || !currentModel) return;
+    
+    const deltaX = e.clientX - previousMousePosition.x;
+    const deltaY = e.clientY - previousMousePosition.y;
+    
+    currentModel.rotation.y += deltaX * 0.01;
+    currentModel.rotation.x += deltaY * 0.01;
+    
+    previousMousePosition = { x: e.clientX, y: e.clientY };
+  });
+  
+  canvas.addEventListener('mouseup', () => { isDragging = false; });
+  canvas.addEventListener('mouseleave', () => { isDragging = false; });
+  
+  // Touch support
+  canvas.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  });
+  
+  canvas.addEventListener('touchmove', (e) => {
+    if(!isDragging || !currentModel) return;
+    e.preventDefault();
+    
+    const deltaX = e.touches[0].clientX - previousMousePosition.x;
+    const deltaY = e.touches[0].clientY - previousMousePosition.y;
+    
+    currentModel.rotation.y += deltaX * 0.01;
+    currentModel.rotation.x += deltaY * 0.01;
+    
+    previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  });
+  
+  canvas.addEventListener('touchend', () => { isDragging = false; });
+  
+  // Button controls
+  document.querySelectorAll('.viewer-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.viewer-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      loadModel(btn.dataset.model);
+    });
+  });
+  
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    if(currentModel && !isDragging) {
+      currentModel.rotation.y += 0.005;
+    }
+    renderer.render(scene, camera);
+  }
+  
+  // Handle resize
+  function onResize() {
+    const container = canvas.parentElement;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  }
+  
+  window.addEventListener('resize', onResize);
+  
+  // Initial load
+  camera.position.z = 4;
+  loadModel('bust');
+  animate();
+  
+  // Feature cards animation
+  gsap.utils.toArray('.feature-card').forEach((c, i) => {
+    gsap.fromTo(c, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 90%' } });
+  });
+})();
 </script>
 </body>
 </html>

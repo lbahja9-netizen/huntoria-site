@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "name": "Huntoria 3D Asset Library",
+    "description": "Free 3D models, textures, and HDRIs for web development showcase",
+    "license": "CC0 (Public Domain)",
+    "source": "Poly Haven (https://polyhaven.com)",
+    "created": "2026-09-17",
+    "total_models": 4,
+    "total_textures": 4,
+    "total_hdris": 1
+  },
+  "models": {
+    "marble_bust": {
+      "name": "Marble Bust 01",
+      "description": "Renaissance-style marble bust with detailed carving and subtle weathering",
+      "category": "Decor & Art/Sculptures",
+      "polycount": 17456,
+      "files": {
+        "gltf": "3d-models/marble_bust/marble_bust.gltf",
+        "bin": "3d-models/marble_bust/marble_bust.bin",
+        "diffuse": "3d-models/marble_bust/textures/marble_bust_diff.jpg",
+        "normal": "3d-models/marble_bust/textures/marble_bust_nor.jpg",
+        "roughness": "3d-models/marble_bust/textures/marble_bust_rough.jpg"
+      },
+      "tags": ["sculpture", "marble", "renaissance", "bust", "art"]
+    },
+    "horse_statue": {
+      "name": "Horse Statue 01",
+      "description": "Glossy white porcelain horse figurine rearing on wooden base",
+      "category": "Decor & Art/Sculptures",
+      "polycount": 22388,
+      "files": {
+        "gltf": "3d-models/horse_statue/horse_statue.gltf",
+        "bin": "3d-models/horse_statue/horse_statue.bin",
+        "diffuse": "3d-models/horse_statue/textures/horse_statue_diff.jpg",
+        "normal": "3d-models/horse_statue/textures/horse_statue_nor.jpg",
+        "arm": "3d-models/horse_statue/textures/horse_statue_arm.jpg"
+      },
+      "tags": ["horse", "porcelain", "sculpture", "figurine", "elegant"]
+    },
+    "lemon": {
+      "name": "Lemon",
+      "description": "Realistic lemon with detailed bumpy rind and natural blemishes",
+      "category": "Food & Kitchen/Produce",
+      "polycount": 4012,
+      "files": {
+        "gltf": "3d-models/lemon/lemon.gltf",
+        "bin": "3d-models/lemon/lemon.bin",
+        "diffuse": "3d-models/lemon/textures/lemon_diff.jpg",
+        "normal": "3d-models/lemon/textures/lemon_nor.jpg",
+        "arm": "3d-models/lemon/textures/lemon_arm.jpg"
+      },
+      "tags": ["food", "fruit", "citrus", "lemon", "organic"]
+    },
+    "lightbulb": {
+      "name": "Lightbulb 01",
+      "description": "Worn glass incandescent bulb with visible coil filament",
+      "category": "Lighting/Bulbs",
+      "polycount": 4372,
+      "files": {
+        "gltf": "3d-models/lightbulb/lightbulb.gltf",
+        "bin": "3d-models/lightbulb/lightbulb.bin",
+        "diffuse": "3d-models/lightbulb/textures/lightbulb_diff.jpg",
+        "normal": "3d-models/lightbulb/textures/lightbulb_nor.jpg",
+        "arm": "3d-models/lightbulb/textures/lightbulb_arm.jpg",
+        "emissive": "3d-models/lightbulb/textures/lightbulb_emissive.jpg"
+      },
+      "tags": ["light", "bulb", "glass", "vintage", "filament"]
+    }
+  },
+  "textures": {
+    "concrete_floor": {
+      "name": "Concrete Floor 01",
+      "description": "Weathered outdoor concrete floor with rough surface",
+      "category": "Concrete",
+      "resolution": "2k",
+      "files": {
+        "diffuse": "textures/concrete/concrete_diff.jpg",
+        "normal": "textures/concrete/concrete_nor.jpg",
+        "roughness": "textures/concrete/concrete_rough.jpg"
+      },
+      "tags": ["concrete", "floor", "rough", "weathered"]
+    }
+  },
+  "hdris": {
+    "studio_small_09": {
+      "name": "Studio Small 09",
+      "description": "Studio lighting environment for product visualization",
+      "category": "Indoor/Studios",
+      "resolution": "1k",
+      "files": {
+        "hdr": "hdri/studio_small_09.hdr"
+      },
+      "tags": ["studio", "indoor", "lighting", "product"]
+    }
+  },
+  "sources": {
+    "polyhaven": {
+      "url": "https://polyhaven.com",
+      "license": "CC0 (Public Domain)",
+      "api": "https://api.polyhaven.com",
+      "note": "All assets are free for commercial use without attribution"
+    },
+    "sketchfab": {
+      "url": "https://sketchfab.com",
+      "license": "CC BY (Attribution required)",
+      "note": "Large library of web-optimized 3D models"
+    },
+    "mixamo": {
+      "url": "https://www.mixamo.com",
+      "license": "Free with Adobe ID",
+      "note": "Animated characters for web experiences"
+    }
+  }
+}
