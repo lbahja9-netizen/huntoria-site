@@ -135,38 +135,38 @@
   "images": [
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_nor_gl",
-      "uri": "textures/lightbulb_01_nor_gl_2k.jpg"
+      "name": "lightbulb_nor_gl",
+      "uri": "textures/lightbulb_nor.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_diff-lightbulb_01_alpha",
-      "uri": "textures/lightbulb_01_diff_2k.jpg"
+      "name": "lightbulb_diff",
+      "uri": "textures/lightbulb_diff.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_metal-lightbulb_01_rough",
-      "uri": "textures/lightbulb_01_arm_2k.jpg"
+      "name": "lightbulb_arm",
+      "uri": "textures/lightbulb_arm.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_emissive",
-      "uri": "textures/lightbulb_01_emissive_2k.jpg"
+      "name": "lightbulb_emissive",
+      "uri": "textures/lightbulb_emissive.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_nor_gl.png",
-      "uri": "textures/lightbulb_01_nor_gl_2k.jpg"
+      "name": "lightbulb_nor_gl2",
+      "uri": "textures/lightbulb_nor.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_diff.png",
-      "uri": "textures/lightbulb_01_diff_2k.jpg"
+      "name": "lightbulb_diff2",
+      "uri": "textures/lightbulb_diff.jpg"
     },
     {
       "mimeType": "image/jpeg",
-      "name": "lightbulb_01_metal.png-lightbulb_01_rough.png",
-      "uri": "textures/lightbulb_01_arm_2k.jpg"
+      "name": "lightbulb_arm2",
+      "uri": "textures/lightbulb_arm.jpg"
     }
   ],
   "accessors": [
@@ -298,7 +298,7 @@
   "buffers": [
     {
       "byteLength": 114776,
-      "uri": "lightbulb_01.bin"
+      "uri": "lightbulb.bin"
     }
   ]
 }
